@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Fonts -->
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&display=swap"
+      rel="stylesheet"
+    /> -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <!-- Leaflet  -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- CSS LOADER -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/css-loader/3.3.3/css-loader.css" integrity="sha512-HrLBWHEIRcc9ZemiLhR34DVdkr81NVqhOtT1fIZGdcY5UmC5JzJAEwuj9B/fcNA6huJ3NQ8KV67CmdM/3H2H3g==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/extensions.css') }}"
+    />
+
+    <!-- JQUERY -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!-- Normalize CSS -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/normalize.css') }}"
+    />
+    <!-- Custom CSS -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/style.css') }}"
+    />
+
+    <title>NDVI</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__inner container">
+        <a class="site__link" href="/">
+          <svg
+            class="site__logo"
+            width="100"
+            height="31"
+            viewBox="0 0 100 31"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g clip-path="url(#clip0_34_5)">
+              <path
+                d="M30.8642 15.4321C30.8642 18.4843 29.9591 21.4679 28.2634 24.0057C26.5677 26.5435 24.1576 28.5215 21.3377 29.6895C18.5179 30.8575 15.415 31.1631 12.4214 30.5677C9.42791 29.9722 6.67817 28.5025 4.51996 26.3442C2.36174 24.186 0.891974 21.4363 0.296523 18.4428C-0.298927 15.4492 0.00667957 12.3463 1.1747 9.52649C2.34272 6.70664 4.32069 4.29648 6.85848 2.60078C9.39628 0.905077 12.3799 -3.63969e-08 15.4321 0L15.4321 15.4321H30.8642Z"
+                fill="#A1B748"
+              />
+              <path
+                d="M27.1604 15.4321C27.1604 12.7187 26.2196 10.0892 24.4982 7.99172C22.7768 5.89421 20.3814 4.45846 17.7201 3.92909C15.0588 3.39973 12.2963 3.80951 9.90328 5.08861C7.51025 6.36771 5.63477 8.43699 4.59638 10.9439C3.558 13.4507 3.42097 16.2401 4.20863 18.8367C4.9963 21.4333 6.65993 23.6764 8.91606 25.1839C11.1722 26.6914 13.8812 27.37 16.5816 27.104C19.282 26.8381 21.8066 25.644 23.7252 23.7254L15.432 15.4321H27.1604Z"
+                fill="#4F4F4F"
+              />
+              <path
+                d="M30.8642 15.4321C30.8642 18.4843 29.9591 21.4679 28.2634 24.0057C26.5677 26.5435 24.1576 28.5215 21.3377 29.6895C18.5179 30.8575 15.415 31.1631 12.4214 30.5677C9.42791 29.9722 6.67817 28.5025 4.51996 26.3442C2.36174 24.186 0.891974 21.4363 0.296523 18.4428C-0.298927 15.4492 0.00667957 12.3463 1.1747 9.52649C2.34272 6.70664 4.32069 4.29648 6.85848 2.60078C9.39628 0.905077 12.3799 -3.63969e-08 15.4321 0L15.4321 15.4321H30.8642Z"
+                fill="url(#paint0_linear_34_5)"
+              />
+              <path
+                d="M49.8275 23.4691L48.6339 19.6714H43.1326L41.939 23.4691H38.5753L44.0115 7.81156H47.8635L53.3105 23.4691H49.8275ZM45.8453 10.8064L43.8379 17.2191H47.9286L45.9212 10.8064H45.8453ZM68.1543 16.8936C68.1543 19.0276 67.5394 20.7022 66.3097 21.9175C65.0872 23.1327 63.3872 23.7404 61.2099 23.7404C58.8661 23.7404 57.0215 23.017 55.676 21.5702C54.3377 20.1235 53.6686 18.1306 53.6686 15.5915C53.6686 13.0886 54.3341 11.121 55.6651 9.68873C57.0034 8.25644 58.8263 7.5403 61.1339 7.5403C62.9568 7.5403 64.5012 8.0322 65.7671 9.01599C67.0331 9.99979 67.7818 11.2838 68.0132 12.868H64.7255C64.4868 12.0506 64.0491 11.4104 63.4125 10.9474C62.7832 10.4845 62.0273 10.253 61.1447 10.253C59.8499 10.253 58.8372 10.7196 58.1066 11.6527C57.3759 12.5859 57.0106 13.8843 57.0106 15.5481C57.0106 17.2408 57.3904 18.5755 58.15 19.552C58.9167 20.5286 59.9548 21.0169 61.2641 21.0169C62.3347 21.0169 63.2064 20.7167 63.8791 20.1163C64.5591 19.5158 64.9172 18.731 64.9533 17.7617L64.9642 17.5121H61.5571V15.1249H68.1543V16.8936ZM73.6013 10.3723V15.3636H76.4225C77.2472 15.3636 77.8874 15.143 78.3431 14.7018C78.8061 14.2605 79.0375 13.6492 79.0375 12.868C79.0375 12.1084 78.7988 11.5044 78.3214 11.0559C77.844 10.6002 77.2002 10.3723 76.39 10.3723H73.6013ZM73.6013 17.7399V23.4691H70.3244V7.81156H76.7372C78.5239 7.81156 79.9128 8.25644 80.9039 9.1462C81.9021 10.0287 82.4013 11.2476 82.4013 12.8029C82.4013 13.8228 82.1481 14.7343 81.6417 15.5373C81.1426 16.333 80.4481 16.9044 79.5584 17.2517L82.857 23.4691H79.146L76.2272 17.7399H73.6013ZM86.1013 9.72129C87.4613 8.26729 89.3023 7.5403 91.6243 7.5403C93.9464 7.5403 95.7838 8.26729 97.1365 9.72129C98.4965 11.1753 99.1764 13.1501 99.1764 15.6458C99.1764 18.1342 98.4965 20.1054 97.1365 21.5594C95.7765 23.0134 93.9392 23.7404 91.6243 23.7404C89.3023 23.7404 87.4613 23.0134 86.1013 21.5594C84.7486 20.1054 84.0723 18.1342 84.0723 15.6458C84.0723 13.1501 84.7486 11.1753 86.1013 9.72129ZM94.6842 11.7287C93.9247 10.7593 92.9047 10.2747 91.6243 10.2747C90.344 10.2747 89.3204 10.7593 88.5536 11.7287C87.7941 12.698 87.4143 14.0037 87.4143 15.6458C87.4143 17.2806 87.7941 18.5827 88.5536 19.552C89.3131 20.5141 90.3367 20.9952 91.6243 20.9952C92.9047 20.9952 93.9247 20.5141 94.6842 19.552C95.4438 18.5827 95.8236 17.2806 95.8236 15.6458C95.8236 14.0037 95.4438 12.698 94.6842 11.7287Z"
+                fill="#4F4F4F"
+              />
+            </g>
+            <defs>
+              <linearGradient
+                id="paint0_linear_34_5"
+                x1="15.4321"
+                y1="0"
+                x2="15.4321"
+                y2="30.8642"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stop-color="#48B760" />
+                <stop offset="1" stop-color="#6BB748" stop-opacity="0.63" />
+              </linearGradient>
+              <clipPath id="clip0_34_5">
+                <rect width="100" height="30.8642" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </a>
+      </div>
+    </header>
+
+    <main class="main__content">
+      <div class="main__inner">
+        <section class="map__section">
+          <div class="land__container">
+            <div class="land__inner">
+              <div class="land__top">
+                <h3 class="land__title">Yer maydoni</h3>
+
+                <!-- <button class="land__toggler">
+                    <svg
+                      width="48"
+                      height="48"
+                      viewBox="0 0 48 48"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M24 30.242C23.7374 30.2423 23.4772 30.1907 23.2345 30.0901C22.9919 29.9896 22.7715 29.842 22.586 29.656L14.1006 21.1717C13.7256 20.7967 13.5149 20.288 13.5149 19.7577C13.5149 19.2273 13.7256 18.7186 14.1006 18.3436C14.4757 17.9686 14.9843 17.7579 15.5147 17.7579C16.0451 17.7579 16.5537 17.9686 16.9288 18.3436L24 25.4138L31.0713 18.3435C31.4463 17.9685 31.955 17.7578 32.4854 17.7578C33.0158 17.7578 33.5244 17.9685 33.8994 18.3435C34.2745 18.7186 34.4852 19.2272 34.4852 19.7576C34.4852 20.288 34.2745 20.7966 33.8995 21.1717L25.414 29.6561C25.2286 29.8421 25.0082 29.9896 24.7655 30.0902C24.5228 30.1907 24.2627 30.2423 24 30.242V30.242Z"
+                        fill="#73B158"
+                      />
+                    </svg>
+                  </button> -->
+              </div>
+              <div class="land__content">
+                <form class="land__form">
+                  <div class="input-group">
+                    <label class="form-label w-100">Qidirish</label>
+                    <div class="input-group mb-2">
+                      <input
+                        type="text"
+                        class="form-control land__cad-num"
+                        placeholder="Kadastr raqamini kiriting..."
+                        {% if cad_number %}value="{{ cad_number }}"{% endif %}
+                        aria-label="Kadastr raqamini kiriting"
+                        aria-describedby="button-addon2"
+                      />
+                      <button
+                        class="btn land__cad-search"
+                        type="submit"
+                        id="button-addon2"
+                      >
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z"
+                            stroke="#EEEEEE"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M21 21L16.65 16.65"
+                            stroke="#EEEEEE"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+                <div class="land__areas-box">
+                  <div class="land__area-loader">
+                    <div class="loader"></div>
+                  </div>
+                  <div
+                    class="alert alert-warning text-center land__areas-invalid--msg"
+                  >
+                    Ma'lumot topilmadi
+                  </div>
+                  <ul class="land__areas-list"></ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="map__container">
+            <div class="map__box">
+              <div id="map"></div>
+              <div class="map__loader">
+                <div class="loader"></div>
+              </div>
+              <div class="map__vegetation-container">
+                <div class="map__vegetation-inner">
+                  <div class="map__vegetation-top">
+                    <h3 class="map__vegetation-title">Vegetatsiya indeksi</h3>
+                  </div>
+                  <div class="map__vegetation-index--box">
+                    <div class="w-100">
+                      <!-- <label for="" class="form-label"></label> -->
+                      <select class="form-select index-select map__vegetation-select" name="" id="">
+                        <option value="">NDVI</option>
+                        <option value="">NDMI</option>
+                      </select>
+                  </div>
+                  </div>
+                  <ul class="map__vegetation-date--list">
+                    <li class="map__vegetation-date--item">15 noyabr 2023</li>
+                  </ul>
+                  <div class="map__vegetation-info">
+                    <ul class="map__vegetation-info--list">
+                      <!-- <li class="map__vegetation-info--item">
+                        <span class="map__vegetation-info--color"></span>
+                        <p class="map__vegetation-info--text">fdfsdf</p>
+                        <span class="map__vegetation-info--area">12 ga</span>
+                      </li> -->
+                    </ul>
+                  </div>
+                  <div class="map__vegetation-toggler">
+                    <button class="popup__toggle-close w-100 h-100">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.54 11.2895L9.87998 5.63955C9.78702 5.54582 9.67642 5.47143 9.55456 5.42066C9.4327 5.36989 9.30199 5.34375 9.16998 5.34375C9.03797 5.34375 8.90726 5.36989 8.78541 5.42066C8.66355 5.47143 8.55294 5.54582 8.45998 5.63955C8.27373 5.82691 8.16919 6.08036 8.16919 6.34455C8.16919 6.60873 8.27373 6.86219 8.45998 7.04955L13.41 12.0495L8.45998 16.9995C8.27373 17.1869 8.16919 17.4404 8.16919 17.7045C8.16919 17.9687 8.27373 18.2222 8.45998 18.4095C8.5526 18.504 8.66304 18.5792 8.78492 18.6307C8.90679 18.6822 9.03767 18.709 9.16998 18.7095C9.30229 18.709 9.43317 18.6822 9.55505 18.6307C9.67692 18.5792 9.78737 18.504 9.87998 18.4095L15.54 12.7595C15.6415 12.6659 15.7225 12.5523 15.7779 12.4258C15.8333 12.2993 15.8619 12.1627 15.8619 12.0245C15.8619 11.8864 15.8333 11.7498 15.7779 11.6233C15.7225 11.4968 15.6415 11.3832 15.54 11.2895Z"
+                                  fill="black"/>
+                        </svg>
+                    </button>
+                    <button class="popup__toggle-open w-100 h-100">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.2899 11.9997L14.8299 8.4597C15.0162 8.27234 15.1207 8.01889 15.1207 7.7547C15.1207 7.49052 15.0162 7.23707 14.8299 7.0497C14.737 6.95598 14.6264 6.88158 14.5045 6.83081C14.3827 6.78004 14.252 6.75391 14.1199 6.75391C13.9879 6.75391 13.8572 6.78004 13.7354 6.83081C13.6135 6.88158 13.5029 6.95598 13.4099 7.0497L9.16994 11.2897C9.07622 11.3827 9.00182 11.4933 8.95105 11.6151C8.90028 11.737 8.87415 11.8677 8.87415 11.9997C8.87415 12.1317 8.90028 12.2624 8.95105 12.3843C9.00182 12.5061 9.07622 12.6167 9.16994 12.7097L13.4099 16.9997C13.5034 17.0924 13.6142 17.1657 13.736 17.2155C13.8579 17.2652 13.9883 17.2905 14.1199 17.2897C14.2516 17.2905 14.382 17.2652 14.5038 17.2155C14.6257 17.1657 14.7365 17.0924 14.8299 16.9997C15.0162 16.8123 15.1207 16.5589 15.1207 16.2947C15.1207 16.0305 15.0162 15.7771 14.8299 15.5897L11.2899 11.9997Z" fill="black"/>
+                            </svg>
+                            
+                    </button>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="container-fluid mt-auto">
+      <div
+        class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top"
+      >
+        <div class="col-md-4 d-flex align-items-center">
+          <a
+            href="/"
+            class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1"
+          >
+            <span>
+              <i
+                class="fa-solid fa-map"
+                style="font-size: 24px; width: 30px"
+              ></i>
+            </span>
+          </a>
+          <span class="mb-3 mb-md-0 text-muted"
+            >&copy; Land Indexer - 2023</span
+          >
+        </div>
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+          <li class="me-3">
+            <a class="text-decoration-none" href="#">
+              <span>
+                <i class="fa-brands fa-telegram"></i>
+              </span>
+              <span>Biz bilan bog'lanish</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      defer
+      src="{{ url_for('static', filename='scripts/leaflet.js') }}"
+    ></script>
+    <script
+      defer
+      src="{{ url_for('static', filename='scripts/script.js') }}"
+    ></script>
+
+    <script>
+      $(document).ready(function () {
+        let data_geojson = null;
+        let grid_colors = [
+          { grid_code: 2, grid_color: "#00A9E6", grid_name: "Boshqa yerlar" },
+          { grid_code: 3, grid_color: "#F5CA7A", grid_name: "Ochiq yer maydoni" },
+          {
+            grid_code: 4,
+            grid_color: "#FFFFBE",
+            grid_name: "Kuchsiz rivojlangan",
+          },
+          {
+            grid_code: 5,
+            grid_color: "#AAFF00",
+            grid_name: "O'rtacha rivojlangan",
+          },
+          {
+            grid_code: 6,
+            grid_color: "#4CE600",
+            grid_name: "Yaxshi rivojlangan",
+          },
+          {
+            grid_code: 7,
+            grid_color: "#38A800",
+            grid_name: "Juda yaxshi rivojlangan",
+          },
+        ];
+        
+        $(".land__form").on("submit", (e) => {
+          e.preventDefault();
+          $(".land__area-loader").css("display", "flex");
+          let cad_number = $(".land__cad-num").val();
+          $(".land__cad-num").val("");
+          $.ajax({
+            type: "GET",
+            url: "/land",
+            dataType: 'json',
+            data: {
+              cad_num: cad_number
+            },
+            success: function (data) {
+              data_geojson = data;
+              if (Object.keys(data).length > 0) {
+                cadNumListMaker(data?.features[0].properties);
+                $(".land__areas-invalid--msg").css("display", "none");
+                setTimeout(() => {
+                  $(".land__area-loader").css("display", "none");
+                }, 1000);
+              } else if (Object.keys(data).length == 0) {
+                $(".land__areas-invalid--msg").css("display", "block");
+                $(".land__areas-list li").css("display", "none");
+                setTimeout(() => {
+                  $(".land__area-loader").css("display", "none");
+                }, 1000);
+              }
+            },
+          });
+        });
+        {% if cad_number %}
+          $(".land__form button[type='submit']").click();
+        {% endif %}
+        function cadNumListMaker(props) {
+          let cad_num = props.cad_number.replaceAll(":", "-");
+          let area = Math.round(props.Shape_Area * 1000000000) / 10000;
+          area = area > 0 ? area : "-";
+          $(".land__areas-list").html(
+            `<li class="land__areas-item">
+              <button
+                class="btn w-100 land__areas-btn"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#cad-num-${cad_num}"
+                aria-expanded="false"
+                aria-controls="collapseExample"
+              >
+                ${props.cad_number} konturlari 1 ta
+              </button>
+              <div class="collapse" id="cad-num-${cad_num}">
+                <div class="card card-body p-1">
+                  <ul class="land__contour-list">
+                    <li class="land__contour-item" data-contour='${props.contour_number}'>
+                      <div class="land__contour-img--wrapper">
+                        <img
+                          class="land__contour-img"
+                          src="{{ url_for('static', filename='images/cotton.png') }}"
+                          alt="cotton"
+                          width="30px"
+                          height="30px"
+                        />
+                      </div>
+                      <div class="land__contour-info">
+                        <span class="land__contour-num">
+                          ${props.contour_number}-kontur
+                        </span>
+                        <span class="land__contour-area">
+                        ${area} ga
+                        </span>
+                      </div>
+                    </li>
+                    
+                  </ul>
+                </div>
+              </div>
+            </li>`
+          );
+        }
+
+        let ellandContourItems = document.querySelectorAll(
+          ".land__contour-item"
+        );
+
+        ellandContourItems.forEach((item) => {
+          item.addEventListener("click", (e) => {
+            console.log(item);
+            ellandContourItems.forEach((btn) => {
+              item.classList.remove("active");
+            });
+            e.target.classList.add("active");
+          });
+        });
+
+        let elVegetationDates = document.querySelectorAll(
+          ".map__vegetation-date--item"
+        );
+
+        elVegetationDates.forEach((item) => {
+          item.addEventListener("click", (e) => {
+            elVegetationDates.forEach((btn) => {
+              btn.classList.remove("active");
+            });
+            e.target.classList.add("active");
+          });
+        });
+
+        //// MAP /////
+
+        let landLayer = null;
+        let ndviLayer = null;
+
+        function ndviStyle(feature) {
+          let g_code = feature.properties.gridcode;
+          // makeVegetationInfoBox(feature.properties);
+          return {
+            fillColor: grid_colors.filter((grid) => grid.grid_code == g_code)[0]
+              .grid_color,
+            weight: 2,
+            opacity: 0.8,
+            color: "white",
+            dashArray: "3",
+            fillOpacity: 0.4,
+          };
+        }
+
+        $(document).on("click", ".land__contour-item", () => {
+          $(".map__loader").css("display", "flex");
+          $('.map__vegetation-container').addClass('show')
+          layerClear();
+          landLayer = L.geoJson(data_geojson, {
+            style: {
+              fillColor: "#69db7c",
+              weight: 2,
+              opacity: 0.8,
+              color: "white",
+              dashArray: "3",
+              fillOpacity: 0.4,
+            },
+            onEachFeature: onEachFeature,
+          }).addTo(map);
+
+          map.flyToBounds(landLayer.getBounds(), { duration: 3 });
+          setTimeout(() => {
+            $(".map__loader").css("display", "none");
+          }, 3000);
+        });
+
+        function onEachFeature(feature, layer) {
+          layer.on({
+            // mouseover: highlightFeature,
+            // mouseout: resetHighlight,
+            click: zoomToFeature,
+          });
+
+          function zoomToFeature(e) {
+            map.flyToBounds(e.target.getBounds());
+          }
+        }
+
+        let grid_props = []
+
+        $(".map__vegetation-date--item").on("click", () => {
+          $(".map__loader").css("display", "flex");
+          $.ajax({
+            type: "GET",
+            url: `/ndvi`,
+            success: function (data) {
+              // data = JSON.parse(data);
+              layerClear();
+              if (data) {
+                data.features.forEach(feature => {
+                  grid_props.push(feature.properties)
+                })
+                makeVegetationInfoBox(grid_props)
+                ndviLayer = L.geoJson(data, {
+                  style: ndviStyle,
+                }).addTo(map);
+
+                map.flyToBounds(ndviLayer.getBounds());
+              } else if (data == false) {
+                console.log(data);
+              }
+            },
+          });
+          setTimeout(() => {
+            $(".map__loader").css("display", "none");
+          }, 3000);
+        });
+
+        function layerClear() {
+          if (ndviLayer) {
+            if (map.hasLayer(ndviLayer)) {
+              map.removeLayer(ndviLayer);
+            }
+          }
+          if (landLayer) {
+            if (map.hasLayer(landLayer)) {
+              map.removeLayer(landLayer);
+            }
+          }
+        }
+
+        function makeVegetationInfoBox(props) {
+          let vegInfoList = document.querySelector(
+            ".map__vegetation-info--list"
+          );
+          vegInfoList.innerHTML = "";
+          let grid_list = [];
+          grid_colors.forEach((grid, index) => {
+            if (grid.grid_code == props[index]?.gridcode) {
+              let obj = {
+                color: grid.grid_color,
+                gridcode: grid.grid_code,
+                grid_name: grid.grid_name,
+                area: props[index].area,
+              };
+              grid_list.push(obj);
+            }
+          });
+          grid_list.forEach((grid) => {
+            let area = Math.round(grid.area * 10) / 10;
+            area = area > 0 ? area : "-";
+            vegInfoList.innerHTML += `
+                <li class="map__vegetation-info--item">
+                  <span class="map__vegetation-info--color" style="background-color: ${grid.color};"></span>
+                  <p class="map__vegetation-info--text">${grid.grid_name}</p>
+                  <span class="map__vegetation-info--area">${area} ga</span>
+                </li>
+            `;
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
