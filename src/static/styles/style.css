@@ -127,11 +127,15 @@ input {
   height: 100%;
   /* border: 1px solid #181f27; */
   background-color: #f7fbf9;
+  overflow: hidden;
+  
 }
 
 .land__inner {
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .land__top {
@@ -165,6 +169,7 @@ input {
 .land__content {
   height: calc(100% - 50px);
   /* padding: 5px 10px; */
+  position: relative;
 }
 
 .land__form {
@@ -185,10 +190,11 @@ input {
 
 .land__areas-box {
   position: relative;
-  height: calc(100% - 90px);
+  max-height: 650px;
   padding-top: 10px;
   border-top: 1px solid #dee2e6;
   padding: 10px 10px;
+  overflow-y: scroll;
 }
 
 .land__area-loader {
@@ -202,6 +208,7 @@ input {
   align-items: center;
   justify-content: center;
   display: none;
+  z-index: 600;
 }
 
 .land__areas-invalid--msg {
@@ -212,7 +219,7 @@ input {
 .land__areas-list {
   height: 100%;
   overflow: hidden;
-  /* overflow-y: scroll; */
+  overflow-y: scroll;
   padding: 0 5px;
 }
 
@@ -261,6 +268,8 @@ input {
 }
 
 .land__contour-list {
+  max-width: 100%;
+  overflow-y: scroll;
 }
 
 .land__contour-item {
@@ -270,6 +279,11 @@ input {
 }
 
 .land__contour-item:hover {
+  /* background-color: #fff8e1; */
+  background-color: #d9f1e3;
+  cursor: pointer;
+}
+.land__contour-item.active {
   /* background-color: #fff8e1; */
   background-color: #d9f1e3;
   cursor: pointer;
@@ -341,7 +355,7 @@ input {
   width: 100%;
   height: 100%;
   background-color: rgb(222, 226, 230, 0.9);
-  z-index: 500;
+  z-index: 600;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -358,16 +372,17 @@ input {
 .map__vegetation-container {
   position: absolute;
   top: 0;
-  right: -320px;
-  right: 0;
-  width: 320px;
+  /* right: -320px; */
+  right: -25vw;
+  /* right: 0; */
+  width: 20vw;
   height: 100%;
   outline: 0;
   overflow: hidden;
   overflow-y: auto;
   min-height: auto;
   background-color: #fff;
-  z-index: 501;
+  z-index: 500;
   transition: right ease 0.5s;
 }
 
@@ -375,23 +390,38 @@ input {
   right: 0;
 }
 
+.map__vegetation-toggler {
+  position: absolute;
+  top: 30px;
+  /* bottom: 700px; */
+  /* left: 0; */
+  right: 20vw;
+  width: 40px;
+  height: 40px;
+  background-color: #1c9e79;
+  z-index: 999;
+  /* display: none; */
+  /* transition: right ease 0.5s; */
+}
+
+.map__vegetation-toggler.open {
+  
+}
+
+.toggle-open {
+  display: none;
+}
+
+.toggle-close {
+}
+
 .map__vegetation-inner {
   position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
-}
-
-.map__vegetation-toggler {
-  position: absolute;
-  top: 30px;
-  /* bottom: 700px; */
-  left: 0;
-  left: -50px;
-  width: 50px;
-  height: 50px;
-  background-color: #1c9e79;
-  z-index: 99999;
+  display: flex;
+  flex-direction: column;
 }
 
 .map__vegetation-top {
@@ -409,6 +439,7 @@ input {
   align-items: center;
   justify-content: flex-start;
 }
+
 .map__vegetation-title {
   font-weight: 500;
   font-size: 1rem;
@@ -416,22 +447,22 @@ input {
   color: #333232;
 }
 
-.map__vegetation-index--box {
-  padding: 10px 20px;
+.map__vegetation-select-box {
+  padding: 10px 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid #dedede;
 }
 
-.map__vegetation-select {
-  margin: 0;
-  width: 100%;
+.map__vegetation-select  option {
+  background: unset !important;
 }
 
 .map__vegetation-date--list {
-  min-height: 450px;
+  /* min-height: 450px; */
   overflow-y: scroll;
+  flex-grow: 1;
 }
 
 /* SCROLLBAR */
@@ -488,8 +519,10 @@ input {
 
 .map__vegetation-info {
   border-top: 1px solid #d7d9db;
-  height: 240px;
+  /* min-height: 240px; */
   padding: 5px;
+  width: 100%;
+  margin-top: auto;
 }
 .map__vegetation-info--list {
   width: 100%;
@@ -534,4 +567,32 @@ input {
   font-size: 16px;
   font-weight: 400;
   font-style: italic;
+}
+
+@media only screen and (max-width: 1575px) {
+  .land__areas-btn {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .map__vegetation-info--text {
+    font-size: 14px;
+  } 
+  .map__vegetation-info--area { 
+    font-size: 14px;
+  }
+
+}
+
+@media only screen and (max-width: 1210px) {
+
+  .map__vegetation-info--text {
+    font-size: 12px;
+  } 
+  .map__vegetation-info--area { 
+    font-size: 12px;
+  }
+
 }

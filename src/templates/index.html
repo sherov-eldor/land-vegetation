@@ -160,7 +160,13 @@
                         type="text"
                         class="form-control land__cad-num"
                         placeholder="Kadastr raqamini kiriting..."
-                        {% if cad_number %}value="{{ cad_number }}"{% endif %}
+                        {%
+                        if
+                        cad_number
+                        %}value="{{ cad_number }}"
+                        {%
+                        endif
+                        %}
                         aria-label="Kadastr raqamini kiriting"
                         aria-describedby="button-addon2"
                       />
@@ -195,69 +201,87 @@
                     </div>
                   </div>
                 </form>
+                <div class="land__area-loader">
+                  <div class="loader"></div>
+                </div>
                 <div class="land__areas-box">
-                  <div class="land__area-loader">
-                    <div class="loader"></div>
-                  </div>
                   <div
                     class="alert alert-warning text-center land__areas-invalid--msg"
                   >
                     Ma'lumot topilmadi
                   </div>
-                  <ul class="land__areas-list"></ul>
+                  <ul class="land__areas-list">
+                    
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
           <div class="map__container">
             <div class="map__box">
+              <!-- <div class="map__vegetation-toggler">
+                <button class="toggle-close w-100 h-100">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M15.54 11.2895L9.87998 5.63955C9.78702 5.54582 9.67642 5.47143 9.55456 5.42066C9.4327 5.36989 9.30199 5.34375 9.16998 5.34375C9.03797 5.34375 8.90726 5.36989 8.78541 5.42066C8.66355 5.47143 8.55294 5.54582 8.45998 5.63955C8.27373 5.82691 8.16919 6.08036 8.16919 6.34455C8.16919 6.60873 8.27373 6.86219 8.45998 7.04955L13.41 12.0495L8.45998 16.9995C8.27373 17.1869 8.16919 17.4404 8.16919 17.7045C8.16919 17.9687 8.27373 18.2222 8.45998 18.4095C8.5526 18.504 8.66304 18.5792 8.78492 18.6307C8.90679 18.6822 9.03767 18.709 9.16998 18.7095C9.30229 18.709 9.43317 18.6822 9.55505 18.6307C9.67692 18.5792 9.78737 18.504 9.87998 18.4095L15.54 12.7595C15.6415 12.6659 15.7225 12.5523 15.7779 12.4258C15.8333 12.2993 15.8619 12.1627 15.8619 12.0245C15.8619 11.8864 15.8333 11.7498 15.7779 11.6233C15.7225 11.4968 15.6415 11.3832 15.54 11.2895Z"
+                      fill="#fff"
+                    />
+                  </svg>
+                </button>
+                <button class="toggle-open w-100 h-100">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M11.2899 11.9997L14.8299 8.4597C15.0162 8.27234 15.1207 8.01889 15.1207 7.7547C15.1207 7.49052 15.0162 7.23707 14.8299 7.0497C14.737 6.95598 14.6264 6.88158 14.5045 6.83081C14.3827 6.78004 14.252 6.75391 14.1199 6.75391C13.9879 6.75391 13.8572 6.78004 13.7354 6.83081C13.6135 6.88158 13.5029 6.95598 13.4099 7.0497L9.16994 11.2897C9.07622 11.3827 9.00182 11.4933 8.95105 11.6151C8.90028 11.737 8.87415 11.8677 8.87415 11.9997C8.87415 12.1317 8.90028 12.2624 8.95105 12.3843C9.00182 12.5061 9.07622 12.6167 9.16994 12.7097L13.4099 16.9997C13.5034 17.0924 13.6142 17.1657 13.736 17.2155C13.8579 17.2652 13.9883 17.2905 14.1199 17.2897C14.2516 17.2905 14.382 17.2652 14.5038 17.2155C14.6257 17.1657 14.7365 17.0924 14.8299 16.9997C15.0162 16.8123 15.1207 16.5589 15.1207 16.2947C15.1207 16.0305 15.0162 15.7771 14.8299 15.5897L11.2899 11.9997Z"
+                      fill="#fff"
+                    />
+                  </svg>
+                </button>
+              </div> -->
               <div id="map"></div>
               <div class="map__loader">
                 <div class="loader"></div>
               </div>
               <div class="map__vegetation-container">
+                <div class="map__vegetation-toggler"></div>
                 <div class="map__vegetation-inner">
                   <div class="map__vegetation-top">
                     <h3 class="map__vegetation-title">Vegetatsiya indeksi</h3>
                   </div>
-                  <div class="map__vegetation-index--box">
-                    <div class="w-100">
-                      <!-- <label for="" class="form-label"></label> -->
-                      <select class="form-select index-select map__vegetation-select" name="" id="">
-                        <option value="">NDVI</option>
-                        <option value="">NDMI</option>
-                      </select>
-                  </div>
+                  <div class="map__vegetation-select-box">
+                    <select
+                      class="form-select map__vegetation-select"
+                    >
+                      <option value="">NDVI</option>
+                    </select>
                   </div>
                   <ul class="map__vegetation-date--list">
-                    <li class="map__vegetation-date--item">15 noyabr 2023</li>
+                    <li class="map__vegetation-date--item" data-date="2023-08-01">1 avgust 2023</li>
+                    <li class="map__vegetation-date--item" data-date="2023-09-05">5 sentabr 2023</li>
                   </ul>
+
                   <div class="map__vegetation-info">
                     <ul class="map__vegetation-info--list">
-                      <!-- <li class="map__vegetation-info--item">
+                        <!-- <li class="map__vegetation-info--item">
                         <span class="map__vegetation-info--color"></span>
                         <p class="map__vegetation-info--text">fdfsdf</p>
                         <span class="map__vegetation-info--area">12 ga</span>
-                      </li> -->
+                        </li> -->
                     </ul>
-                  </div>
-                  <div class="map__vegetation-toggler">
-                    <button class="popup__toggle-close w-100 h-100">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15.54 11.2895L9.87998 5.63955C9.78702 5.54582 9.67642 5.47143 9.55456 5.42066C9.4327 5.36989 9.30199 5.34375 9.16998 5.34375C9.03797 5.34375 8.90726 5.36989 8.78541 5.42066C8.66355 5.47143 8.55294 5.54582 8.45998 5.63955C8.27373 5.82691 8.16919 6.08036 8.16919 6.34455C8.16919 6.60873 8.27373 6.86219 8.45998 7.04955L13.41 12.0495L8.45998 16.9995C8.27373 17.1869 8.16919 17.4404 8.16919 17.7045C8.16919 17.9687 8.27373 18.2222 8.45998 18.4095C8.5526 18.504 8.66304 18.5792 8.78492 18.6307C8.90679 18.6822 9.03767 18.709 9.16998 18.7095C9.30229 18.709 9.43317 18.6822 9.55505 18.6307C9.67692 18.5792 9.78737 18.504 9.87998 18.4095L15.54 12.7595C15.6415 12.6659 15.7225 12.5523 15.7779 12.4258C15.8333 12.2993 15.8619 12.1627 15.8619 12.0245C15.8619 11.8864 15.8333 11.7498 15.7779 11.6233C15.7225 11.4968 15.6415 11.3832 15.54 11.2895Z"
-                                  fill="black"/>
-                        </svg>
-                    </button>
-                    <button class="popup__toggle-open w-100 h-100">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.2899 11.9997L14.8299 8.4597C15.0162 8.27234 15.1207 8.01889 15.1207 7.7547C15.1207 7.49052 15.0162 7.23707 14.8299 7.0497C14.737 6.95598 14.6264 6.88158 14.5045 6.83081C14.3827 6.78004 14.252 6.75391 14.1199 6.75391C13.9879 6.75391 13.8572 6.78004 13.7354 6.83081C13.6135 6.88158 13.5029 6.95598 13.4099 7.0497L9.16994 11.2897C9.07622 11.3827 9.00182 11.4933 8.95105 11.6151C8.90028 11.737 8.87415 11.8677 8.87415 11.9997C8.87415 12.1317 8.90028 12.2624 8.95105 12.3843C9.00182 12.5061 9.07622 12.6167 9.16994 12.7097L13.4099 16.9997C13.5034 17.0924 13.6142 17.1657 13.736 17.2155C13.8579 17.2652 13.9883 17.2905 14.1199 17.2897C14.2516 17.2905 14.382 17.2652 14.5038 17.2155C14.6257 17.1657 14.7365 17.0924 14.8299 16.9997C15.0162 16.8123 15.1207 16.5589 15.1207 16.2947C15.1207 16.0305 15.0162 15.7771 14.8299 15.5897L11.2899 11.9997Z" fill="black"/>
-                            </svg>
-                            
-                    </button>
-                </div>
                 </div>
               </div>
+              
             </div>
           </div>
         </section>
@@ -315,124 +339,131 @@
 
     <script>
       $(document).ready(function () {
+        let dataIsHave = true
         let data_geojson = null;
-        let grid_colors = [
-          { grid_code: 2, grid_color: "#00A9E6", grid_name: "Boshqa yerlar" },
-          { grid_code: 3, grid_color: "#F5CA7A", grid_name: "Ochiq yer maydoni" },
-          {
-            grid_code: 4,
-            grid_color: "#FFFFBE",
-            grid_name: "Kuchsiz rivojlangan",
-          },
-          {
-            grid_code: 5,
-            grid_color: "#AAFF00",
-            grid_name: "O'rtacha rivojlangan",
-          },
-          {
-            grid_code: 6,
-            grid_color: "#4CE600",
-            grid_name: "Yaxshi rivojlangan",
-          },
-          {
-            grid_code: 7,
-            grid_color: "#38A800",
-            grid_name: "Juda yaxshi rivojlangan",
-          },
-        ];
-        
+
         $(".land__form").on("submit", (e) => {
           e.preventDefault();
           $(".land__area-loader").css("display", "flex");
           let cad_number = $(".land__cad-num").val();
+          if (cad_number.match(/^\d{2}:\d{2}:\d{9}$/) == null){
+            $(".land__areas-invalid--msg").css("display", "block");
+            $(".land__areas-list li").css("display", "none");
+            setTimeout(() => {
+                    $(".land__area-loader").css("display", "none");
+                  }, 100);
+          } else {
+            $.ajax({
+              type: "GET",
+              url: "http://192.168.44.144:5001/search/",
+              dataType: 'json',
+              data: {
+                cad_number: cad_number
+              },
+              success: function (data) {
+                data_geojson = data;
+                console.log(data);
+                if (Object.keys(data).length > 0) {
+                  cadNumListMaker(data?.features);
+                  $(".land__areas-invalid--msg").css("display", "none");
+                  setTimeout(() => {
+                    $(".land__area-loader").css("display", "none");
+                  }, 100);
+                } else if (Object.keys(data).length == 0) {
+                  $('.map__vegetation-container').removeClass('show')
+                  $(".land__areas-invalid--msg").css("display", "block");
+                  $(".land__areas-list li").css("display", "none");
+                  setTimeout(() => {
+                    $(".land__area-loader").css("display", "none");
+                  }, 100);
+                }
+              },
+            });
+          }
           $(".land__cad-num").val("");
-          $.ajax({
-            type: "GET",
-            url: "/land",
-            dataType: 'json',
-            data: {
-              cad_num: cad_number
-            },
-            success: function (data) {
-              data_geojson = data;
-              if (Object.keys(data).length > 0) {
-                cadNumListMaker(data?.features[0].properties);
-                $(".land__areas-invalid--msg").css("display", "none");
-                setTimeout(() => {
-                  $(".land__area-loader").css("display", "none");
-                }, 1000);
-              } else if (Object.keys(data).length == 0) {
-                $(".land__areas-invalid--msg").css("display", "block");
-                $(".land__areas-list li").css("display", "none");
-                setTimeout(() => {
-                  $(".land__area-loader").css("display", "none");
-                }, 1000);
-              }
-            },
-          });
+          
         });
         {% if cad_number %}
           $(".land__form button[type='submit']").click();
         {% endif %}
-        function cadNumListMaker(props) {
-          let cad_num = props.cad_number.replaceAll(":", "-");
-          let area = Math.round(props.Shape_Area * 1000000000) / 10000;
-          area = area > 0 ? area : "-";
-          $(".land__areas-list").html(
-            `<li class="land__areas-item">
-              <button
-                class="btn w-100 land__areas-btn"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#cad-num-${cad_num}"
-                aria-expanded="false"
-                aria-controls="collapseExample"
-              >
-                ${props.cad_number} konturlari 1 ta
-              </button>
-              <div class="collapse" id="cad-num-${cad_num}">
-                <div class="card card-body p-1">
-                  <ul class="land__contour-list">
-                    <li class="land__contour-item" data-contour='${props.contour_number}'>
-                      <div class="land__contour-img--wrapper">
-                        <img
-                          class="land__contour-img"
-                          src="{{ url_for('static', filename='images/cotton.png') }}"
-                          alt="cotton"
-                          width="30px"
-                          height="30px"
-                        />
-                      </div>
-                      <div class="land__contour-info">
-                        <span class="land__contour-num">
-                          ${props.contour_number}-kontur
-                        </span>
-                        <span class="land__contour-area">
-                        ${area} ga
-                        </span>
-                      </div>
-                    </li>
-                    
-                  </ul>
-                </div>
+
+        function cadNumListMaker(features) {
+          console.log(features);
+          // let cad_num = props.cad_number.replaceAll(":", "-");
+          // let area = Math.round(props.area * 1000) / 10000;
+          // area = area > 0 ? area : "-";
+
+          let cad_num = features[0].properties.cad_number.replaceAll(":", "-");
+
+
+
+          let li_s = ""
+          features.forEach(feature => {
+            li_s += `<li class="land__contour-item" data-contour='${feature.properties.contour_number}'>
+              <div class="land__contour-img--wrapper">
+                <img
+                  class="land__contour-img"
+                  src="{{ url_for('static', filename='images/cotton.png') }}"
+                  alt="cotton"
+                  width="30px"
+                  height="30px"
+                />
+              </div>
+              <div class="land__contour-info">
+                <span class="land__contour-num">
+                  ${feature.properties.contour_number}-kontur
+                </span>
+                <span class="land__contour-area">
+                ${Math.round(feature.properties.area * 100) / 100} ga
+                </span>
               </div>
             </li>`
-          );
-        }
-
-        let ellandContourItems = document.querySelectorAll(
-          ".land__contour-item"
-        );
-
-        ellandContourItems.forEach((item) => {
-          item.addEventListener("click", (e) => {
-            console.log(item);
-            ellandContourItems.forEach((btn) => {
-              item.classList.remove("active");
-            });
-            e.target.classList.add("active");
           });
-        });
+            $(".land__areas-list").html(
+              `<li class="land__areas-item">
+                <button
+                  class="btn w-100 land__areas-btn"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#cad-num-${cad_num}"
+                  aria-expanded="false"
+                  aria-controls="collapseExample"
+                >
+                  <span> ${features[0].properties.cad_number} </span> 
+                  <span>konturlari ${features.length} ta</span>
+                </button>
+                <div class="collapse" id="cad-num-${cad_num}">
+                  <div class="card card-body p-1">
+                    <ul class="land__contour-list">
+                      ${li_s}
+                    </ul>
+                  </div>
+                </div>
+              </li>`
+            );
+
+        
+
+
+          let elLandContourItems = document.querySelectorAll(
+            ".land__contour-item"
+          );
+
+          elLandContourItems.forEach((item) => {
+            item.addEventListener("click", (e) => {
+              elLandContourItems.forEach((btn) => {
+                btn.classList.remove("active");
+              });
+              e.target.classList.add("active");
+              if(e.target.parentElement.classList.contains('land__contour-img--wrapper')){
+                e.target.parentElement.parentElement.classList.add("active")
+              } else if(e.target.parentElement.classList.contains('land__contour-info')){
+                e.target.parentElement.parentElement.classList.add("active")
+              }
+            });
+          });
+
+        }
 
         let elVegetationDates = document.querySelectorAll(
           ".map__vegetation-date--item"
@@ -453,26 +484,42 @@
         let ndviLayer = null;
 
         function ndviStyle(feature) {
-          let g_code = feature.properties.gridcode;
+          let g_color = feature.properties.grid_color;
           // makeVegetationInfoBox(feature.properties);
           return {
-            fillColor: grid_colors.filter((grid) => grid.grid_code == g_code)[0]
-              .grid_color,
+            fillColor: g_color,
             weight: 2,
-            opacity: 0.8,
             color: "white",
             dashArray: "3",
-            fillOpacity: 0.4,
+            fillOpacity: 0.7,
           };
         }
 
         $(document).on("click", ".land__contour-item", () => {
           $(".map__loader").css("display", "flex");
           $('.map__vegetation-container').addClass('show')
+          $('.map__vegetation-toggler').css("display", "block");
+          $(".map__vegetation-info--list").empty()
+
+
+
+
+          if($(".map__vegetation-date--item").hasClass('active')) {
+            $(".map__vegetation-date--item").removeClass('active')
+          }
+
           layerClear();
-          landLayer = L.geoJson(data_geojson, {
+
+          let contour_number_active = $('.land__contour-item.active ').attr('data-contour');
+
+          let geo_obj = {
+            features : data_geojson.features.filter(feature => feature.properties.contour_number == contour_number_active),
+            type : "FeatureCollection"
+          }
+          landLayer = null
+          landLayer = L.geoJson(geo_obj, {
             style: {
-              fillColor: "#69db7c",
+              fillColor: "#339af0",
               weight: 2,
               opacity: 0.8,
               color: "white",
@@ -482,10 +529,10 @@
             onEachFeature: onEachFeature,
           }).addTo(map);
 
-          map.flyToBounds(landLayer.getBounds(), { duration: 3 });
+          map.flyToBounds(landLayer.getBounds(), { duration: 1, padding : [0,200]});
           setTimeout(() => {
             $(".map__loader").css("display", "none");
-          }, 3000);
+          }, 1000);
         });
 
         function onEachFeature(feature, layer) {
@@ -502,15 +549,34 @@
 
         let grid_props = []
 
-        $(".map__vegetation-date--item").on("click", () => {
+        $(".map__vegetation-date--item").on("click", element => {
           $(".map__loader").css("display", "flex");
+          
+          let date = element.target.getAttribute('data-date')
+          let contour_number_temp = $('.land__contour-item.active ').attr('data-contour');
+          let geometry;
+          for (let i = 0; i < data_geojson.features.length; i++) {
+            if (data_geojson.features[i].properties.contour_number == contour_number_temp) {
+              geometry = data_geojson.features[i].geometry
+              break
+            }
+          }
           $.ajax({
-            type: "GET",
-            url: `/ndvi`,
+            type: "POST",
+            url: `http://192.168.44.144:5001/get-ndvi/`,
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify({
+                region: "17",
+                year: 2023,
+                date: date,
+                geometry: geometry
+            }),
             success: function (data) {
               // data = JSON.parse(data);
               layerClear();
               if (data) {
+                grid_props = []
                 data.features.forEach(feature => {
                   grid_props.push(feature.properties)
                 })
@@ -547,31 +613,31 @@
           let vegInfoList = document.querySelector(
             ".map__vegetation-info--list"
           );
-          vegInfoList.innerHTML = "";
-          let grid_list = [];
-          grid_colors.forEach((grid, index) => {
-            if (grid.grid_code == props[index]?.gridcode) {
-              let obj = {
-                color: grid.grid_color,
-                gridcode: grid.grid_code,
-                grid_name: grid.grid_name,
-                area: props[index].area,
-              };
-              grid_list.push(obj);
-            }
-          });
-          grid_list.forEach((grid) => {
-            let area = Math.round(grid.area * 10) / 10;
-            area = area > 0 ? area : "-";
+          $(".map__vegetation-info--list").empty('')
+
+          props.forEach((grid) => {
+            let area = grid.area ? Math.round(grid.area * 1000) / 1000 : 0;
+            area = area > 0 ? `${area} ga` : "-";
             vegInfoList.innerHTML += `
                 <li class="map__vegetation-info--item">
-                  <span class="map__vegetation-info--color" style="background-color: ${grid.color};"></span>
+                  <span class="map__vegetation-info--color" style="background-color: ${grid.grid_color};"></span>
                   <p class="map__vegetation-info--text">${grid.grid_name}</p>
-                  <span class="map__vegetation-info--area">${area} ga</span>
+                  <span class="map__vegetation-info--area">${area}</span>
                 </li>
             `;
           });
         }
+
+        history.pushState({}, document.title, "/")
+
+
+          // // RIGHT SIDEBAR CONTROL
+
+          // $('.map__vegetation-toggler .toggle-open').on('click', ()=>{
+          //   $('.map__vegetation-container').removeClass('show')
+          //   $('.map__vegetation-toggler').css("display", "block");
+          // })
+
       });
     </script>
   </body>
