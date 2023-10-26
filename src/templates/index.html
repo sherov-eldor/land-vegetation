@@ -49,6 +49,9 @@
       referrerpolicy="no-referrer"
     />
 
+    <!-- CHART -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <!-- CSS LOADER -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/css-loader/3.3.3/css-loader.css" integrity="sha512-HrLBWHEIRcc9ZemiLhR34DVdkr81NVqhOtT1fIZGdcY5UmC5JzJAEwuj9B/fcNA6huJ3NQ8KV67CmdM/3H2H3g==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
     <link
@@ -128,28 +131,13 @@
       </div>
     </header>
 
-    <main class="main__content">
-      <div class="main__inner">
-        <section class="map__section">
-          <div class="land__container">
+    <main class="main__content col-12">
+      <div class="main__inner col-12">
+        <section class="map__section col-12">
+          <div class="land__container col-2">
             <div class="land__inner">
               <div class="land__top">
                 <h3 class="land__title">Yer maydoni</h3>
-
-                <!-- <button class="land__toggler">
-                    <svg
-                      width="48"
-                      height="48"
-                      viewBox="0 0 48 48"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M24 30.242C23.7374 30.2423 23.4772 30.1907 23.2345 30.0901C22.9919 29.9896 22.7715 29.842 22.586 29.656L14.1006 21.1717C13.7256 20.7967 13.5149 20.288 13.5149 19.7577C13.5149 19.2273 13.7256 18.7186 14.1006 18.3436C14.4757 17.9686 14.9843 17.7579 15.5147 17.7579C16.0451 17.7579 16.5537 17.9686 16.9288 18.3436L24 25.4138L31.0713 18.3435C31.4463 17.9685 31.955 17.7578 32.4854 17.7578C33.0158 17.7578 33.5244 17.9685 33.8994 18.3435C34.2745 18.7186 34.4852 19.2272 34.4852 19.7576C34.4852 20.288 34.2745 20.7966 33.8995 21.1717L25.414 29.6561C25.2286 29.8421 25.0082 29.9896 24.7655 30.0902C24.5228 30.1907 24.2627 30.2423 24 30.242V30.242Z"
-                        fill="#73B158"
-                      />
-                    </svg>
-                  </button> -->
               </div>
               <div class="land__content">
                 <form class="land__form">
@@ -217,72 +205,69 @@
               </div>
             </div>
           </div>
-          <div class="map__container">
-            <div class="map__box">
-              <!-- <div class="map__vegetation-toggler">
-                <button class="toggle-close w-100 h-100">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M15.54 11.2895L9.87998 5.63955C9.78702 5.54582 9.67642 5.47143 9.55456 5.42066C9.4327 5.36989 9.30199 5.34375 9.16998 5.34375C9.03797 5.34375 8.90726 5.36989 8.78541 5.42066C8.66355 5.47143 8.55294 5.54582 8.45998 5.63955C8.27373 5.82691 8.16919 6.08036 8.16919 6.34455C8.16919 6.60873 8.27373 6.86219 8.45998 7.04955L13.41 12.0495L8.45998 16.9995C8.27373 17.1869 8.16919 17.4404 8.16919 17.7045C8.16919 17.9687 8.27373 18.2222 8.45998 18.4095C8.5526 18.504 8.66304 18.5792 8.78492 18.6307C8.90679 18.6822 9.03767 18.709 9.16998 18.7095C9.30229 18.709 9.43317 18.6822 9.55505 18.6307C9.67692 18.5792 9.78737 18.504 9.87998 18.4095L15.54 12.7595C15.6415 12.6659 15.7225 12.5523 15.7779 12.4258C15.8333 12.2993 15.8619 12.1627 15.8619 12.0245C15.8619 11.8864 15.8333 11.7498 15.7779 11.6233C15.7225 11.4968 15.6415 11.3832 15.54 11.2895Z"
-                      fill="#fff"
-                    />
-                  </svg>
-                </button>
-                <button class="toggle-open w-100 h-100">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M11.2899 11.9997L14.8299 8.4597C15.0162 8.27234 15.1207 8.01889 15.1207 7.7547C15.1207 7.49052 15.0162 7.23707 14.8299 7.0497C14.737 6.95598 14.6264 6.88158 14.5045 6.83081C14.3827 6.78004 14.252 6.75391 14.1199 6.75391C13.9879 6.75391 13.8572 6.78004 13.7354 6.83081C13.6135 6.88158 13.5029 6.95598 13.4099 7.0497L9.16994 11.2897C9.07622 11.3827 9.00182 11.4933 8.95105 11.6151C8.90028 11.737 8.87415 11.8677 8.87415 11.9997C8.87415 12.1317 8.90028 12.2624 8.95105 12.3843C9.00182 12.5061 9.07622 12.6167 9.16994 12.7097L13.4099 16.9997C13.5034 17.0924 13.6142 17.1657 13.736 17.2155C13.8579 17.2652 13.9883 17.2905 14.1199 17.2897C14.2516 17.2905 14.382 17.2652 14.5038 17.2155C14.6257 17.1657 14.7365 17.0924 14.8299 16.9997C15.0162 16.8123 15.1207 16.5589 15.1207 16.2947C15.1207 16.0305 15.0162 15.7771 14.8299 15.5897L11.2899 11.9997Z"
-                      fill="#fff"
-                    />
-                  </svg>
-                </button>
-              </div> -->
+          <div class="map__container col-8">
+            <div class="map__box col-8">
               <div id="map"></div>
               <div class="map__loader">
                 <div class="loader"></div>
               </div>
-              <div class="map__vegetation-container">
-                <div class="map__vegetation-toggler"></div>
-                <div class="map__vegetation-inner">
-                  <div class="map__vegetation-top">
-                    <h3 class="map__vegetation-title">Vegetatsiya indeksi</h3>
-                  </div>
-                  <div class="map__vegetation-select-box">
-                    <select
-                      class="form-select map__vegetation-select"
-                    >
-                      <option value="">NDVI</option>
-                    </select>
-                  </div>
+            </div>
+            <div class="map__vegetation-chart">
+              <div class="map__vegetation-chart--inner">
+                <canvas id="vegetation-chart" style="width: 100%; height: 100%;"></canvas>
+              </div>
+              <div class="map__vegetation-chart--toggler">
+                <button class="map__vegetation-chart--btn map__vegetation-chart--open">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21.7099 7.28994C21.617 7.19621 21.5064 7.12182 21.3845 7.07105C21.2627 7.02028 21.132 6.99414 20.9999 6.99414C20.8679 6.99414 20.7372 7.02028 20.6154 7.07105C20.4935 7.12182 20.3829 7.19621 20.2899 7.28994L13.9999 13.5899L9.70994 9.28994C9.61698 9.19621 9.50637 9.12182 9.38452 9.07105C9.26266 9.02028 9.13195 8.99414 8.99994 8.99414C8.86793 8.99414 8.73722 9.02028 8.61536 9.07105C8.4935 9.12182 8.3829 9.19621 8.28994 9.28994L2.28994 15.2899C2.19621 15.3829 2.12182 15.4935 2.07105 15.6154C2.02028 15.7372 1.99414 15.8679 1.99414 15.9999C1.99414 16.132 2.02028 16.2627 2.07105 16.3845C2.12182 16.5064 2.19621 16.617 2.28994 16.7099C2.3829 16.8037 2.4935 16.8781 2.61536 16.9288C2.73722 16.9796 2.86793 17.0057 2.99994 17.0057C3.13195 17.0057 3.26266 16.9796 3.38452 16.9288C3.50637 16.8781 3.61698 16.8037 3.70994 16.7099L8.99994 11.4099L13.2899 15.7099C13.3829 15.8037 13.4935 15.8781 13.6154 15.9288C13.7372 15.9796 13.8679 16.0057 13.9999 16.0057C14.132 16.0057 14.2627 15.9796 14.3845 15.9288C14.5064 15.8781 14.617 15.8037 14.7099 15.7099L21.7099 8.70994C21.8037 8.61698 21.8781 8.50638 21.9288 8.38452C21.9796 8.26266 22.0057 8.13195 22.0057 7.99994C22.0057 7.86793 21.9796 7.73722 21.9288 7.61536C21.8781 7.4935 21.8037 7.3829 21.7099 7.28994Z" fill="white"/>
+                    </svg>                    
+                </button>
+                <button class="map__vegetation-chart--btn map__vegetation-chart--close">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.54 11.2895L9.87998 5.63955C9.78702 5.54582 9.67642 5.47143 9.55456 5.42066C9.4327 5.36989 9.30199 5.34375 9.16998 5.34375C9.03797 5.34375 8.90726 5.36989 8.78541 5.42066C8.66355 5.47143 8.55294 5.54582 8.45998 5.63955C8.27373 5.82691 8.16919 6.08036 8.16919 6.34455C8.16919 6.60873 8.27373 6.86219 8.45998 7.04955L13.41 12.0495L8.45998 16.9995C8.27373 17.1869 8.16919 17.4404 8.16919 17.7045C8.16919 17.9687 8.27373 18.2222 8.45998 18.4095C8.5526 18.504 8.66304 18.5792 8.78492 18.6307C8.90679 18.6822 9.03767 18.709 9.16998 18.7095C9.30229 18.709 9.43317 18.6822 9.55505 18.6307C9.67692 18.5792 9.78737 18.504 9.87998 18.4095L15.54 12.7595C15.6415 12.6659 15.7225 12.5523 15.7779 12.4258C15.8333 12.2993 15.8619 12.1627 15.8619 12.0245C15.8619 11.8864 15.8333 11.7498 15.7779 11.6233C15.7225 11.4968 15.6415 11.3832 15.54 11.2895Z" fill="white"/>
+                    </svg>                    
+                </button>
+              </div>
+            </div>
+            </div>
+            <div class="map__vegetation-container col-2">
+              <div class="map__vegetation-inner">
+                <div class="map__vegetation-top">
+                  <h3 class="map__vegetation-title">Vegetatsiya indeksi</h3>
+                </div>
+                <div class="map__vegetation-select-box">
+                  <select
+                    class="form-select map__vegetation-select"
+                  >
+                    <option value="">NDVI</option>
+                  </select>
+                </div>
                   <ul class="map__vegetation-date--list">
-                    <li class="map__vegetation-date--item" data-date="2023-08-01">1 avgust 2023</li>
-                    <li class="map__vegetation-date--item" data-date="2023-09-05">5 sentabr 2023</li>
+                    <li class="map__vegetation-date--item disabled" data-date="2023-08-01">1 avgust 2023</li>
+                    <li class="map__vegetation-date--item disabled" data-date="2023-09-05">5 sentabr 2023</li>
+                    <li class="map__vegetation-date--item disabled" data-date="2023-09-05">5 sentabr 2023</li>
+                    <li class="map__vegetation-date--item disabled" data-date="2023-09-05">5 sentabr 2023</li>
+                    <li class="map__vegetation-date--item disabled" data-date="2023-09-05">5 sentabr 2023</li>
+                    <li class="map__vegetation-date--item disabled" data-date="2023-09-05">5 sentabr 2023</li>
+                    <li class="map__vegetation-date--item disabled" data-date="2023-09-05">5 sentabr 2023</li>
+                    <li class="map__vegetation-date--item disabled" data-date="2023-09-05">5 sentabr 2023</li>
+                    <li class="map__vegetation-date--item disabled" data-date="2023-09-05">5 sentabr 2023</li>
+                    <li class="map__vegetation-date--item disabled" data-date="2023-09-05">5 sentabr 2023</li>
+                    <li class="map__vegetation-date--item disabled" data-date="2023-09-05">5 sentabr 2023</li>
+                    <li class="map__vegetation-date--item disabled" data-date="2023-09-05">5 sentabr 2023</li>
                   </ul>
 
-                  <div class="map__vegetation-info">
-                    <ul class="map__vegetation-info--list">
-                        <!-- <li class="map__vegetation-info--item">
-                        <span class="map__vegetation-info--color"></span>
-                        <p class="map__vegetation-info--text">fdfsdf</p>
-                        <span class="map__vegetation-info--area">12 ga</span>
-                        </li> -->
-                    </ul>
-                </div>
+                <div class="map__vegetation-info">
+                  <ul class="map__vegetation-info--list">
+                      <!-- <li class="map__vegetation-info--item">
+                      <span class="map__vegetation-info--color"></span>
+                      <p class="map__vegetation-info--text">fdfsdf</p>
+                      <span class="map__vegetation-info--area">12 ga</span>
+                      </li> -->
+                  </ul>
+              </div>
               </div>
               
-            </div>
           </div>
         </section>
       </div>
@@ -341,6 +326,7 @@
       $(document).ready(function () {
         let dataIsHave = true
         let data_geojson = null;
+        let NGROK_URL = 'https://1bcb-213-230-125-66.ngrok-free.app'
 
         $(".land__form").on("submit", (e) => {
           e.preventDefault();
@@ -350,19 +336,18 @@
             $(".land__areas-invalid--msg").css("display", "block");
             $(".land__areas-list li").css("display", "none");
             setTimeout(() => {
-                    $(".land__area-loader").css("display", "none");
-                  }, 100);
+                $(".land__area-loader").css("display", "none");
+              }, 100);
           } else {
             $.ajax({
               type: "GET",
-              url: "http://192.168.44.144:5001/search/",
+              url: `${NGROK_URL}/search/`,
               dataType: 'json',
               data: {
                 cad_number: cad_number
               },
               success: function (data) {
                 data_geojson = data;
-                console.log(data);
                 if (Object.keys(data).length > 0) {
                   cadNumListMaker(data?.features);
                   $(".land__areas-invalid--msg").css("display", "none");
@@ -388,7 +373,6 @@
         {% endif %}
 
         function cadNumListMaker(features) {
-          console.log(features);
           // let cad_num = props.cad_number.replaceAll(":", "-");
           // let area = Math.round(props.area * 1000) / 10000;
           // area = area > 0 ? area : "-";
@@ -488,24 +472,26 @@
           // makeVegetationInfoBox(feature.properties);
           return {
             fillColor: g_color,
-            weight: 2,
-            color: "white",
-            dashArray: "3",
-            fillOpacity: 0.7,
+            // weight: 2,
+            // color: "transparent",
+            color : g_color,
+            // dashArray: "3",
+            fillOpacity: 1,
           };
         }
 
         $(document).on("click", ".land__contour-item", () => {
           $(".map__loader").css("display", "flex");
           $('.map__vegetation-container').addClass('show')
-          $('.map__vegetation-toggler').css("display", "block");
           $(".map__vegetation-info--list").empty()
-
-
 
 
           if($(".map__vegetation-date--item").hasClass('active')) {
             $(".map__vegetation-date--item").removeClass('active')
+          }
+
+          if($('.map__vegetation-date--item').hasClass('disabled')){
+            $('.map__vegetation-date--item').removeClass('disabled')
           }
 
           layerClear();
@@ -563,7 +549,7 @@
           }
           $.ajax({
             type: "POST",
-            url: `http://192.168.44.144:5001/get-ndvi/`,
+            url: `${NGROK_URL}/get-ndvi/`,
             contentType: 'application/json',
             dataType: 'json',
             data: JSON.stringify({
@@ -586,14 +572,14 @@
                 }).addTo(map);
 
                 map.flyToBounds(ndviLayer.getBounds());
+                $(".map__loader").css("display", "none");
               } else if (data == false) {
                 console.log(data);
               }
             },
+          
           });
-          setTimeout(() => {
-            $(".map__loader").css("display", "none");
-          }, 3000);
+          
         });
 
         function layerClear() {
@@ -615,28 +601,62 @@
           );
           $(".map__vegetation-info--list").empty('')
 
+          let summ_area = 0
+          
+          props.forEach(prop => {
+            summ_area += prop.area
+          })
+
           props.forEach((grid) => {
-            let area = grid.area ? Math.round(grid.area * 1000) / 1000 : 0;
+            let area = grid.area ? Math.round(grid.area * 10) / 10 : 0;
+            let percentage = area > 0 ? `${Math.round((area / summ_area) * 100)}%` : '-'
             area = area > 0 ? `${area} ga` : "-";
+
             vegInfoList.innerHTML += `
                 <li class="map__vegetation-info--item">
                   <span class="map__vegetation-info--color" style="background-color: ${grid.grid_color};"></span>
                   <p class="map__vegetation-info--text">${grid.grid_name}</p>
-                  <span class="map__vegetation-info--area">${area}</span>
+                  <span class="map__vegetation-info--area">${area} <b>/</b> ${percentage}</span>
                 </li>
             `;
           });
         }
 
+
+        // CHARTS
+
+        $('.map__vegetation-chart--open').on('click', ()=>{
+          $('.map__vegetation-chart--close').css('display', 'block')
+          $('.map__vegetation-chart--open').css('display', 'none')
+          $('.map__vegetation-chart').addClass('open')
+        })
+
+        $('.map__vegetation-chart--close').on('click', ()=>{
+          $('.map__vegetation-chart--open').css('display', 'block')
+          $('.map__vegetation-chart--close').css('display', 'none')
+          $('.map__vegetation-chart').removeClass('open')
+        })
+
+        const ctx = document.getElementById('vegetation-chart');
+        const labels = ['Yanvar', 'Fevral', 'Mart', 'April', 'May', 'Iyun', 'Iyul'];
+
+        const chart_data = {
+          labels: labels,
+          datasets: [{
+            label: 'My First Dataset',
+            data: [65, 59, 80, 81, 56, 55, 40],
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+          }]
+        };
+
+        new Chart(ctx, {
+          type: 'line',
+          data: chart_data
+        });
+
         history.pushState({}, document.title, "/")
-
-
-          // // RIGHT SIDEBAR CONTROL
-
-          // $('.map__vegetation-toggler .toggle-open').on('click', ()=>{
-          //   $('.map__vegetation-container').removeClass('show')
-          //   $('.map__vegetation-toggler').css("display", "block");
-          // })
 
       });
     </script>
